@@ -102,6 +102,7 @@
 }
 
 body {
+
   overscroll-behavior: none;
   background-color: var(--background);
   position: relative;
@@ -127,7 +128,7 @@ body::before {
   opacity: 0.95;
 }
 
-body::after {
+/* body::after {
   overscroll-behavior: none;
   content: "";
   position: fixed;
@@ -140,6 +141,20 @@ body::after {
       transparent 1px,
       transparent 3px);
   opacity: 0.05;
+  } */
+
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(0deg,
+      rgba(var(--color-accent), 0.15),
+      rgba(var(--color-accent), 0.15) 1px,
+      transparent 1px,
+      transparent 2px);
   mix-blend-mode: overlay;
 }
 
@@ -188,13 +203,14 @@ pre {
 
 
 .title1 {
-  background: radial-gradient(circle,    var(--destructive-foreground) , var(--chart-4)  );
+  background: radial-gradient(circle, var(--destructive-foreground), var(--chart-4));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
 }
+
 .title2 {
-  background: radial-gradient(circle,  var(--destructive) , var(--destructive-foreground)  );
+  background: radial-gradient(circle, var(--destructive), var(--destructive-foreground));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;

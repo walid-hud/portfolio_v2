@@ -99,7 +99,7 @@ const files = [
     output: () => {
       return (
         <div>
-          {/* <img src="" alt="" /> */}
+          <pre></pre>
           <p>
             the truth be told, there isn't a real me, there isn't a "me" to
             begin with,
