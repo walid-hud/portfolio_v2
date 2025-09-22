@@ -120,10 +120,10 @@ const Terminal = () => {
         <Welcom />
         {state.terminalHistory.map(({ command, commandOutput }) => {
           return (
-            <div key={crypto.randomUUID()}>
+            <pre key={crypto.randomUUID()} className="whitespace-pre">
               <CommandLabel command={command} />
               {commandOutput}
-            </div>
+            </pre>
           );
         })}
       </div>

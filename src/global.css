@@ -110,6 +110,11 @@ body {
   filter: contrast(1.05) saturate(1.08) brightness(0.95);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 body::before {
@@ -156,6 +161,7 @@ body::after {
       transparent 1px,
       transparent 2px);
   mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
 
@@ -214,4 +220,12 @@ pre {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
+}
+
+.ascii_room_1 {
+  background: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: radialRainbow 1s linear infinite;
 }

@@ -1,5 +1,5 @@
 import About from "./About";
-
+import Realme from "./ascii_realMe";
 export const availableCommands = {
   about: {
     output() {
@@ -82,11 +82,11 @@ export const availableCommands = {
     output(fileName) {
       const fileToRead = files.find((file) => file.name === fileName);
       return (
-        <p>
+        <>
           {fileName.length === 0 && "no file specified"}
           {fileName.length > 0 && !fileToRead && `unknown file : ${fileName}`}
           {fileToRead && fileToRead.output()}
-        </p>
+        </>
       );
     },
     description: "prints file content",
@@ -96,27 +96,6 @@ export const availableCommands = {
 const files = [
   {
     name: "theR3alMe.txt",
-    output: () => {
-      return (
-        <div>
-          <pre></pre>
-          <p>
-            the truth be told, there isn't a real me, there isn't a "me" to
-            begin with,
-          </p>
-        </div>
-      );
-    },
-  },
-  {
-    name: "secret.txt",
-    output: () => {
-      return (
-        <div>
-          {/* <img src="" alt="" /> */}
-          <p>some secret</p>
-        </div>
-      );
-    },
+    output: () => <Realme />,
   },
 ];
