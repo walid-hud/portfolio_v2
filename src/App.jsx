@@ -1,15 +1,18 @@
-import { useState } from "react"
-import Modal from "./Modal"
-import Terminal from "./Terminal"
+import { useState } from "react";
+import Modal from "./Modal";
+import Terminal from "./Terminal";
+import { LanguageProvider } from "./LanguageContext";
 
 const App = () => {
-  const [modal, setModal] = useState(true)
+  const [modal, setModal] = useState(true);
   return (
-    <main className="w-screen bg-black h-screen text-foreground font-mono overflow-x-hidden overscroll-none">
-      <Modal setModalVisible={setModal}/>
-      {!modal && <Terminal />}
+    <main className="w-screen  h-screen text-foreground font-mono overflow-x-hidden overscroll-none">
+      <LanguageProvider>
+        <Modal setModalVisible={setModal} />
+        {!modal && <Terminal />}
+      </LanguageProvider>
     </main>
-  )
-}
+  );
+};
 
-export default App
+export default App;

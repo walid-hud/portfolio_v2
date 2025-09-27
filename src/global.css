@@ -102,7 +102,7 @@
 }
 
 body {
-
+  text-wrap-style: pretty;
   overscroll-behavior: none;
   background-color: var(--background);
   position: relative;
@@ -115,53 +115,6 @@ body {
 
 ::-webkit-scrollbar {
   display: none;
-}
-
-body::before {
-  overscroll-behavior: none;
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background:
-    radial-gradient(600px 220px at 8% 12%, rgba(80, 255, 120, 0.06), transparent 12%),
-    radial-gradient(500px 200px at 88% 84%, rgba(164, 143, 255, 0.03), transparent 14%),
-    linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.20));
-  mix-blend-mode: screen;
-  filter: blur(8px);
-  opacity: 0.95;
-}
-
-/* body::after {
-  overscroll-behavior: none;
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9998;
-  background: repeating-linear-gradient(to bottom,
-      rgba(255, 255, 255, 0.02) 0px,
-      rgba(255, 255, 255, 0.02) 1px,
-      transparent 1px,
-      transparent 3px);
-  opacity: 0.05;
-  } */
-
-body::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: repeating-linear-gradient(0deg,
-      rgba(var(--color-accent), 0.15),
-      rgba(var(--color-accent), 0.15) 1px,
-      transparent 1px,
-      transparent 2px);
-  mix-blend-mode: overlay;
-  pointer-events: none;
 }
 
 
@@ -183,27 +136,15 @@ pre {
   }
 }
 
-@keyframes radialRainbow {
-  0% {
-    background-position: 0% 50%;
-  }
 
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
 .ascii_banner {
-  background: radial-gradient(circle, var(--color-chart-2), var(--color-chart-3), var(--color-chart-4), var(--color-chart-5));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 200%;
-  animation: radialRainbow 12s linear infinite;
-
+  color: var(--foreground);
+  text-shadow:
+    0 0 2px var(--chart-5),
+    0 0 5px var(--chart-3),
+    0 0 10px var(--chart-2),
+    0 0 20px var(--primary);
 }
 
 
@@ -211,6 +152,7 @@ pre {
 .title1 {
   background: radial-gradient(circle, var(--destructive-foreground), var(--chart-4));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
 }
@@ -218,14 +160,70 @@ pre {
 .title2 {
   background: radial-gradient(circle, var(--destructive), var(--destructive-foreground));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
 }
 
+
+
+
+@keyframes flicker {
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    text-shadow:
+      0 0 2px var(--chart-5),
+      0 0 5px var(--chart-3),
+      0 0 10px var(--chart-2),
+      0 0 20px var(--primary);
+  }
+
+  /* 20%,
+  24%,
+  55% {
+    text-shadow: none;
+  } */
+}
+
+.glitch-text {
+  color: var(--foreground);
+  animation: flicker 3s infinite;
+}
+
 .ascii_room_1 {
-  background: white;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 200%;
-  animation: radialRainbow 1s linear infinite;
+  color: #e2e2f5;
+  animation: flicker-dark infinite 1s;
+}
+
+@keyframes flicker-dark {
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 2px var(--chart-5),
+      0 0 5px var(--chart-3),
+      0 0 10px var(--chart-2),
+      0 0 20px var(--primary);
+  }
+
+  20%,
+  24%,
+  55% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
 }

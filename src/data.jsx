@@ -1,49 +1,86 @@
+import LazyVideo from "./LazyVideo";
 import About from "./About";
 import Realme from "./ascii_realMe";
+import ascii_gen from "./ascii_gen";
 export const availableCommands = {
   about: {
-    output() {
-      return <About />;
+    output({arg, lang = "en"}) {
+      return <About lang={lang} />;
     },
-    description: "short introduction about me",
+    description: {
+      en: "short introduction about me",
+      fr: "courte présentation à mon sujet"
+    },
   },
   help: {
-    output() {
+    output({arg, lang = "en"}) {
+      const translations = {
+        en: {
+          title: "--- list of commands ---",
+          about: "(short description about me)",
+          help: "(prints this list)",
+          clear: "(clears the screen)",
+          whoami: "(display current user)",
+          cat: "(print file content | usage : cat <file name>)",
+          ls: "(lists current directory files and directories)"
+        },
+        fr: {
+          title: "--- liste des commandes ---",
+          about: "(courte description à mon sujet)",
+          help: "(affiche cette liste)",
+          clear: "(efface l'écran)",
+          whoami: "(affiche l'utilisateur actuel)",
+          cat: "(affiche le contenu du fichier | usage : cat <nom du fichier>)",
+          ls: "(liste les fichiers et dossiers du répertoire actuel)"
+        }
+      };
+      
+      const t = translations[lang] || translations.en;
+      
       return (
         <div className="w-full md:w-5/6 lg:w-4/6">
           <br />
-          <p>--- list of commands ---</p>
+          <p>{t.title}</p>
           <br />
           <p>
             about{" "}
             <span className="text-amber-300 ">
-              (short description about me)
+              {t.about}
             </span>
           </p>
           <p>
-            help <span className="text-amber-300 ">(prints this list)</span>
+            help <span className="text-amber-300 ">{t.help}</span>
           </p>
           <p>
             ctrl + L{" "}
-            <span className="text-amber-300 ">(clears the screen)</span>
+            <span className="text-amber-300 ">{t.clear}</span>
           </p>
           <p>
             whoami{" "}
-            <span className="text-amber-300 ">(display current user)</span>
+            <span className="text-amber-300 ">{t.whoami}</span>
           </p>
           <p>
             cat{" "}
             <span className="text-amber-300 ">
-              ({`print file content | usage : cat <file name>`})
+              {t.cat}
+            </span>
+          </p>
+          <p>
+            ls{" "}
+            <span className="text-amber-300 ">
+              {t.ls}
             </span>
           </p>
         </div>
       );
     },
-    description: "prints this list",
+    description: {
+      en: "prints this list",
+      fr: "affiche cette liste"
+    },
   },
   ls: {
-    output() {
+    output({arg, lang = "en"}) {
       return (
         <div className=" *:not-first:px-4">
           {files.map((file) => (
@@ -54,16 +91,22 @@ export const availableCommands = {
         </div>
       );
     },
-    description: "lists files in current directory",
+    description: {
+      en: "lists files in current directory",
+      fr: "liste les fichiers du répertoire actuel"
+    },
   },
   whoami: {
-    output() {
+    output({arg, lang = "en"}) {
       return <p>guest</p>;
     },
-    description: "display current user",
+    description: {
+      en: "display current user",
+      fr: "affiche l'utilisateur actuel"
+    },
   },
   clear: {
-    output() {
+    output({arg, lang = "en"}) {
       window.dispatchEvent(
         new KeyboardEvent("keydown", {
           key: "l",
@@ -75,27 +118,64 @@ export const availableCommands = {
       );
       return <></>;
     },
-    description: "clears the screen",
+    description: {
+      en: "clears the screen",
+      fr: "efface l'écran"
+    },
+  },
+  concepts: {
+    output({arg, lang = "en"}) {  
+      return (
+        <div className="flex flex-col gap-y-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2  ">
+            <LazyVideo src={"/3d_product_concept.mp4"} />
+            <LazyVideo src={"/img_gallery_2.mp4"} />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+            <LazyVideo src={"/animated_nav.mp4"} />
+            <LazyVideo src={"/fluid_sim.mp4"} />
+            <LazyVideo src={"/img_gallery_1.mp4"} />
+          </div>
+        </div>
+      );
+    },
   },
 
   cat: {
-    output(fileName) {
+    output({arg, lang = "en"}) {
+      const fileName = arg;
+      const translations = {
+        en: {
+          noFile: "cat : no file specified",
+          unknownFile: "unknown file :"
+        },
+        fr: {
+          noFile: "cat : aucun fichier spécifié",
+          unknownFile: "fichier inconnu :"
+        }
+      };
+      
+      const t = translations[lang] || translations.en;
       const fileToRead = files.find((file) => file.name === fileName);
+      
       return (
-        <>
-          {fileName.length === 0 && "no file specified"}
-          {fileName.length > 0 && !fileToRead && `unknown file : ${fileName}`}
-          {fileToRead && fileToRead.output()}
-        </>
+        <div>
+          {fileName.length === 0 && t.noFile}
+          {fileName.length > 0 && !fileToRead && `${t.unknownFile} ${fileName}`}
+          {fileToRead && fileToRead.output({arg, lang})}
+        </div>
       );
     },
-    description: "prints file content",
+    description: {
+      en: "prints file content",
+      fr: "affiche le contenu du fichier"
+    },
   },
 };
 
 const files = [
   {
     name: "theR3alMe.txt",
-    output: () => <Realme />,
+    output: ({arg, lang = "en"}) => <Realme />,
   },
 ];

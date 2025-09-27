@@ -3,13 +3,14 @@ import CommandLabel from "./CommandLabel";
 import { availableCommands } from "./data";
 import Banner from "./Banner";
 
+import { useContext } from "react";
+import { LanguageContext } from "./LanguageContext";
 const Terminal = () => {
+  const { lang } = useContext(LanguageContext);
   const terminalEndRef = useRef(null);
   function reducer(state, action) {
     switch (action.type) {
       case "UPDATE_INPUT":
-        // console.table(state);
-
         return { ...state, commandInput: action.payload };
       case "HIGHLIGHT_COMMAND":
         return { ...state, commandHighlight: action.payload };
@@ -48,9 +49,20 @@ const Terminal = () => {
       payload: {
         command: inputRef.current.value,
         commandOutput: findCommand(inputRef.current.value.split(" ")[0]).output(
-          inputRef.current.value.split(" ")[1]
+          { arg: inputRef.current.value.split(" ")[1], lang: lang }
         ),
       },
+    });
+  };
+  const triggerAutoComplete = () => {
+    Object.entries(availableCommands).map((entrie) => {
+      if (entrie[0].includes(inputRef.current.value)) {
+        dispatch({ type: "UPDATE_INPUT", payload: entrie[0] });
+        let commandMatches = Object.keys(availableCommands).includes(
+          entrie[0].split(" ")[0]
+        );
+        dispatch({ type: "HIGHLIGHT_COMMAND", payload: commandMatches });
+      }
     });
   };
   const findCommand = (command) => {
@@ -102,6 +114,12 @@ const Terminal = () => {
             e.preventDefault();
             dispatch({ type: "UPDATE_INPUT", payload: "" });
             break;
+
+          case "Tab":
+            e.preventDefault();
+            triggerAutoComplete();
+            break;
+
           default:
             break;
         }
@@ -114,16 +132,19 @@ const Terminal = () => {
   }, [state.terminalHistory]);
 
   return (
-    <div className="bg-neutral-950 h-screen text-foreground font-mono text-sm px-2">
+    <div
+      id="terminal"
+      className=" h-screen text-foreground font-mono text-sm px-2"
+    >
       <div id="textarea">
         <Banner />
         <Welcom />
-        {state.terminalHistory.map(({ command, commandOutput }) => {
+        {state.terminalHistory.map(({ command, commandOutput }, index) => {
           return (
-            <pre key={crypto.randomUUID()} className="whitespace-pre">
+            <div key={index}>
               <CommandLabel command={command} />
               {commandOutput}
-            </pre>
+            </div>
           );
         })}
       </div>
@@ -139,7 +160,7 @@ const Terminal = () => {
           type="text"
           name="command input"
           className={`outline-0 w-full inline  ${
-            state.commandHighlight ? "text-blue-400" : "text-red-400"
+            state.commandHighlight ? "text-foreground" : "text-red-400"
           }`}
         />
         <div ref={terminalEndRef}></div>
@@ -151,12 +172,21 @@ const Terminal = () => {
 export default Terminal;
 
 function Welcom() {
+  const { lang } = useContext(LanguageContext);
   return (
     <>
-      <p>
-        Type <span className="text-lime-500">help</span> to see available
-        commands
-      </p>
+      {lang === "en" && (
+        <p>
+          Type <span className="text-lime-500">help</span> to see available
+          commands
+        </p>
+      )}
+      {lang === "fr" && (
+        <p>
+          Tapez <span className="text-lime-500">help</span> pour voir les
+          commandes disponibles.
+        </p>
+      )}
     </>
   );
 }

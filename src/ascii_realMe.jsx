@@ -2,7 +2,7 @@ import Room from "./ascii_room";
 export default () => {
   return (
     <div className="block lg:flex gap-x-2">
-      <pre className="text-md ascii_room_1">{Room}</pre>
+      <pre className="text-md ">{Room}</pre>
       <div className="lg:leading-[2]">
         <br />
         <p>
@@ -21,8 +21,8 @@ export default () => {
         <p>And when you come near</p>
         <p>Detaching yourself from those with everything</p>
         <p>You will see in my eyes</p>
-        <p className=" text-[8rem] font-bold tracking-[-4.5rem] whitespace-nowrap  mt-[-1.3rem] ml-[-8px] 
-        transition-all cursor-help duration-300 ease-in-out hover:tracking-widest
+        <p title="love" className="text-[8rem] font-bold tracking-[-4.5rem] whitespace-nowrap  mt-[-1.3rem] ml-[-8px] 
+        transition-all cursor-help duration-300 ease-in-out hover:tracking-widest font-mono
         ">
           FEAR
         </p>
