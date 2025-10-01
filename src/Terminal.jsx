@@ -72,7 +72,7 @@ const Terminal = () => {
     } else {
       foundCommand = {
         output() {
-          return <p>unknown command : {command}</p>;
+          return <p>{lang === "fr" ? "commande inconnue " :"unknown command "}: {command}</p>;
         },
       };
     }
@@ -136,8 +136,8 @@ const Terminal = () => {
       id="terminal"
       className=" h-screen text-foreground font-mono text-sm px-2"
     >
-      <div id="textarea">
-        <Banner />
+      <div id="textarea" >
+        <Banner lang={lang}/>
         <Welcom />
         {state.terminalHistory.map(({ command, commandOutput }, index) => {
           return (
@@ -148,7 +148,7 @@ const Terminal = () => {
           );
         })}
       </div>
-      <div id="input" className="flex gap-x-2">
+      <div id="input" className="flex gap-x-2 ">
         <label htmlFor="command input">
           <CommandLabel />
         </label>
@@ -177,7 +177,7 @@ function Welcom() {
     <>
       {lang === "en" && (
         <p>
-          Type <span className="text-lime-500">help</span> to see available
+          Type <span className="text-lime-500 ">help</span> to see available
           commands
         </p>
       )}

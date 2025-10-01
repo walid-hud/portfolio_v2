@@ -11,7 +11,7 @@ const Modal = ({ setModalVisible }) => {
   const [showModal, setShowModal] = useState(true);
   const [selectedLang, setSelectedLang] = useState(lang);
 
-  // Animate in on mount
+  // Animate-in on mount
   useGSAP(() => {
     if (modalRef.current) {
       gsap.from(modalRef.current, {
@@ -66,7 +66,7 @@ const Modal = ({ setModalVisible }) => {
           {/* Language Selection */}
           <div className="flex gap-4 px-4 py-4">
             <div
-              className="w-18 h-12 bg-cover rounded-md relative cursor-pointer bg-[url('/flag_fr.png')]"
+              className="w-22 h-16 bg-cover rounded-md relative cursor-pointer bg-[url('/flag_fr.png')]"
               onClick={() => setSelectedLang("fr")}
             >
               <input
@@ -78,7 +78,7 @@ const Modal = ({ setModalVisible }) => {
             </div>
 
             <div
-              className="w-18 h-12 bg-cover rounded-md relative cursor-pointer bg-[url('/flag_en.png')]"
+              className="w-22 h-16 bg-cover rounded-md relative cursor-pointer bg-[url('/flag_en.png')]"
               onClick={() => setSelectedLang("en")}
             >
               <input
