@@ -72,7 +72,12 @@ const Terminal = () => {
     } else {
       foundCommand = {
         output() {
-          return <p>{lang === "fr" ? "commande inconnue " :"unknown command "}: {command}</p>;
+          return (
+            <p>
+              {lang === "fr" ? "commande inconnue " : "unknown command "}:{" "}
+              {command}
+            </p>
+          );
         },
       };
     }
@@ -136,8 +141,8 @@ const Terminal = () => {
       id="terminal"
       className=" h-screen text-foreground font-mono text-sm px-2"
     >
-      <div id="textarea" >
-        <Banner lang={lang}/>
+      <div id="textarea">
+        <Banner lang={lang} />
         <Welcom />
         {state.terminalHistory.map(({ command, commandOutput }, index) => {
           return (
@@ -176,16 +181,24 @@ function Welcom() {
   return (
     <>
       {lang === "en" && (
-        <p>
-          Type <span className="text-lime-500 ">help</span> to see available
-          commands
-        </p>
+        <div className=" *:inline *:last:px-2">
+          <p>
+            Type <span className="text-lime-500 ">help</span> to see available
+            commands |
+          </p>
+          <p className=" text-foreground/50 *:text-foreground/60 *:bg-muted *:outline-1 *:rounded-sm *:px-2 ">
+            <span>tab</span> to auto-complete commands 
+          </p>
+        </div>
       )}
       {lang === "fr" && (
-        <p>
-          Tapez <span className="text-lime-500">help</span> pour voir les
-          commandes disponibles.
-        </p>
+        <div className=" *:inline *:last:px-2">
+          <p>
+            Tapez <span className="text-lime-500">help</span> pour voir les
+            commandes disponibles |
+          </p>
+            <p className=" text-foreground/50 *:text-foreground/60 *:bg-muted *:outline-1 *:rounded-sm *:px-2"><span>Tab</span> pour compléter automatiquement les commandes</p>
+        </div>
       )}
     </>
   );

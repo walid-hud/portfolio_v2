@@ -8,7 +8,9 @@ import Shaded from "figlet/importable-fonts/Shaded Blocky";
 import Blocks from "figlet/importable-fonts/Blocks";
 import iso from "figlet/importable-fonts/Isometric3"
 import Regular from "figlet/importable-fonts/ANSI Regular"
+import Standard from "figlet/importable-fonts/Standard"
 
+figlet.parseFont("Standard", Standard);
 figlet.parseFont("Blocks", Blocks);
 figlet.parseFont("Iso", iso);
 figlet.parseFont("ANSI_Shadow", ANSI_shadow);

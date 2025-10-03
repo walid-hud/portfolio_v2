@@ -1,9 +1,11 @@
 import LazyVideo from "./LazyVideo";
 import About from "./About";
 import Realme from "./ascii_realMe";
-import { useState } from "react";
-import ClosableModal from "./ClosableModal";
+import { useContext, useState } from "react";
 import ConceptsModal from "./ConceptsModal";
+import ascii_gen from "./ascii_gen";
+import CopyableText from "./CopyableText";
+import {LanguageContext} from "./LanguageContext"
 export const availableCommands = {
   about: {
     output({ arg, lang = "en" }) {
@@ -125,7 +127,7 @@ export const availableCommands = {
     },
   },
   concepts: {
-    output: ({ arg, lang = "en" }) => <ConceptsModal />,
+    output: ({ arg, lang = "en" }) => <ConceptsModal lang={lang} />,
     description: {
       en: "showcases some of my creative projects",
       fr: "présente certains de mes projets créatifs",
@@ -160,43 +162,13 @@ export const availableCommands = {
   },
   links: {
     output({ arg, lang = "en" }) {
-      const translations = {
-        en: {
-          title: "--- contact information ---",
-          email: "Email",
-          github: "GitHub",
-          linkedin: "LinkedIn",
-          website: "Website",
-        },
-        fr: {
-          title: "--- informations de contact ---",
-          email: "Email",
-          github: "GitHub",
-          linkedin: "LinkedIn",
-          website: "Site web",
-        },
-      };
-
-      const t = translations[lang] || translations.en;
-
       return (
-        <div className="py-2">
-          <p className="font-bold mb-2">{t.title}</p>
-          <p>
-            <span className="">{t.email}:</span>{" "}
-            your.email@example.com
-          </p>
-          <p>
-            <span className="">{t.github}:</span>{" "}
-            github.com/yourusername
-          </p>
-          <p>
-            <span className="">{t.linkedin}:</span>{" "}
-            linkedin.com/in/yourprofile
-          </p>
-          <p>
-            <span className="">{t.website}:</span> yourwebsite.com
-          </p>
+        <div className="py-2 text-foreground">
+            <pre className="">{ascii_gen(lang === "en" ? "contact me":"contactez-moi")}:</pre>
+          <CopyableText link="mailto:walid.oumoulilte@proton.me" text="walid.oumoulilte@proton.me" lang={lang} />
+          <CopyableText link="mailto:walid.oumoulilte@gmail.com" text="walid.oumoulilte@gmail.com" lang={lang} />
+          <CopyableText link="https://github.com/walid-hud" text="https://github.com/walid-hud" lang={lang} />
+          <CopyableText link="https://www.linkedin.com/in/walid101" text="https://www.linkedin.com/in/walid101" lang={lang} />
         </div>
       );
     },
