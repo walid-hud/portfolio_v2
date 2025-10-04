@@ -53,6 +53,7 @@ const Terminal = () => {
         ),
       },
     });
+    inputRef.current.focus();
   };
   const triggerAutoComplete = () => {
     Object.entries(availableCommands).map((entrie) => {
@@ -139,7 +140,7 @@ const Terminal = () => {
   return (
     <div
       id="terminal"
-      className=" h-screen text-foreground font-mono text-sm px-2"
+      className=" h-[100dvh] text-foreground font-mono text-sm px-2"
     >
       <div id="textarea">
         <Banner lang={lang} />
@@ -153,7 +154,7 @@ const Terminal = () => {
           );
         })}
       </div>
-      <div id="input" className="flex gap-x-2 ">
+      <div id="input" className="flex gap-x-2 " onClick={() => inputRef.current.focus()}>
         <label htmlFor="command input">
           <CommandLabel />
         </label>
@@ -181,23 +182,25 @@ function Welcom() {
   return (
     <>
       {lang === "en" && (
-        <div className=" *:inline *:last:px-2">
+        <div >
           <p>
             Type <span className="text-lime-500 ">help</span> to see available
-            commands |
+            commands
           </p>
-          <p className=" text-foreground/50 *:text-foreground/60 *:bg-muted *:outline-1 *:rounded-sm *:px-2 ">
+          <p className="hidden lg:block text-foreground/50 *:text-foreground/60 *:bg-muted *:outline-1 *:rounded-sm *:px-2 ">
             <span>tab</span> to auto-complete commands 
           </p>
         </div>
       )}
       {lang === "fr" && (
-        <div className=" *:inline *:last:px-2">
+        <div>
           <p>
             Tapez <span className="text-lime-500">help</span> pour voir les
-            commandes disponibles |
+            commandes disponibles 
           </p>
-            <p className=" text-foreground/50 *:text-foreground/60 *:bg-muted *:outline-1 *:rounded-sm *:px-2"><span>Tab</span> pour compléter automatiquement les commandes</p>
+          <p className="hidden lg:block text-foreground/50 *:text-foreground/60 *:bg-muted *:outline-1 *:rounded-sm *:px-2">
+            <span>Tab</span> pour compléter automatiquement les commandes
+          </p>
         </div>
       )}
     </>

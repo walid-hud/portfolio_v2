@@ -6,7 +6,7 @@ import { LanguageProvider } from "./LanguageContext";
 const App = () => {
   const [modal, setModal] = useState(true);
   return (
-    <main className="w-screen  h-screen text-foreground text-xl font-mono overflow-x-hidden overscroll-none">
+    <main className="w-screen  h-[100dvh] text-foreground text-xl font-mono overflow-x-hidden overscroll-none">
       <LanguageProvider>
         <Modal setModalVisible={setModal} />
         {!modal && <Terminal />}

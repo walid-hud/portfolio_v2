@@ -17,9 +17,9 @@ const CopyableText = ({text , lang , link}) => {
   }
 
   return (
-    <div className="flex gap-x-4 cursor-pointer items-center text-xl w-fit  *:not-first:hover:text-accent-foreground *:transition-all *:duration-200 *:ease-in-out" onClick={handleCopy}  >
+    <div className="flex gap-x-4 cursor-pointer items-center text-[1rem]  md:text-lg lg:text-xl w-fit  *:not-first:hover:text-accent-foreground *:transition-all *:duration-200 *:ease-in-out" onClick={handleCopy}  >
       <p>{text}</p> 
-      <span onClick={handleCopy} className=" relative inline-block text-foreground/60" title={lang === "en" ? "Click to copy": "Cliquez pour copier"}>
+      <span onClick={handleCopy} className=" relative  inline-block text-foreground/60" title={lang === "en" ? "Click to copy": "Cliquez pour copier"}>
         <BiCopy className={`transition-all duration-300 ${copied ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`} />
         <BiCheck className={`text-green-500 absolute inset-0 transition-all duration-300 ${copied ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`} />
       </span>

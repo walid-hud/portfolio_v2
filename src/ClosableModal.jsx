@@ -81,17 +81,17 @@ const ClosableModal = ({ videos, isOpen, onClose , lang }) => {
   return (
     <div
       ref={OuterContainerRef}
-      className="[&_button]:cursor-pointer scale-100 opacity-100 fixed inset-0 z-50 flex items-center justify-center bg-background bg-opacity-80"
+      className="[&_button]:cursor-pointer h-[100dvh] scale-100 opacity-100 fixed inset-0 z-50 flex items-center justify-center bg-background bg-opacity-80"
     >
       <button
-        className="absolute bottom-8 outline-2 outline-muted rounded-full p-2 right-6 text-destructive-foreground text-3xl z-10 hover:bg-destructive hover:outline-0 transition"
+        className="absolute bottom-6 outline-2 outline-muted rounded-full p-2 right-6 text-destructive-foreground text-3xl z-10 hover:bg-destructive active:bg-destructive hover:outline-0 transition"
         onClick={closeModal}
         aria-label="Close"
       >
         <MdOutlineClose />
       </button>
 
-      <div className="relative w-full h-full flex items-center justify-center">
+      <div className="relative w-full h-[100dvh] flex items-center justify-center">
         <button
           className="absolute left-6 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-gray-400 transition"
           onClick={prevVideo}

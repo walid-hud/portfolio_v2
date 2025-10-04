@@ -164,7 +164,7 @@ export const availableCommands = {
     output({ arg, lang = "en" }) {
       return (
         <div className="py-2 text-foreground">
-            <pre className="">{ascii_gen(lang === "en" ? "contact me":"contactez-moi")}:</pre>
+            <pre style={{fontSize:"clamp(1.5vw, 2.2vw, 1.5rem)"}}>{ascii_gen("contact me" , "Standard")}:</pre>
           <CopyableText link="mailto:walid.oumoulilte@proton.me" text="walid.oumoulilte@proton.me" lang={lang} />
           <CopyableText link="mailto:walid.oumoulilte@gmail.com" text="walid.oumoulilte@gmail.com" lang={lang} />
           <CopyableText link="https://github.com/walid-hud" text="https://github.com/walid-hud" lang={lang} />
