@@ -111,7 +111,7 @@ const ClosableModal = ({ videos, isOpen, onClose , lang }) => {
               className="flex-shrink-0 w-[100vw] h-[100vh] flex items-center justify-center"
               style={{ scrollSnapAlign: "center" }}
             >
-              <div className="h-fit lg:w-[60vw] w-screen flex items-center justify-center rounded-2xl overflow-hidden bg-black">
+              <div className="h-[100dvh] lg:w-[60vw] w-screen flex items-center justify-center rounded-2xl overflow-hidden bg-background">
                 <LazyVideo
                   src={src}
                   type="video/mp4"

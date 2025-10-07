@@ -1,11 +1,8 @@
-import LazyVideo from "./LazyVideo";
 import About from "./About";
 import Realme from "./ascii_realMe";
-import { useContext, useState } from "react";
 import ConceptsModal from "./ConceptsModal";
-import ascii_gen from "./ascii_gen";
 import CopyableText from "./CopyableText";
-import {LanguageContext} from "./LanguageContext"
+import Projects from "./Projects"
 export const availableCommands = {
   about: {
     output({ arg, lang = "en" }) {
@@ -134,27 +131,7 @@ export const availableCommands = {
     },
   },
   projects: {
-    output({ arg, lang = "en" }) {
-      const translations = {
-        en: {
-          title: "--- functional projects ---",
-          placeholder: "Project showcase coming soon...",
-        },
-        fr: {
-          title: "--- projets fonctionnels ---",
-          placeholder: "Présentation des projets bientôt disponible...",
-        },
-      };
-
-      const t = translations[lang] || translations.en;
-
-      return (
-        <div className="py-2">
-          <p className="font-bold mb-2">{t.title}</p>
-          <p className="">{t.placeholder}</p>
-        </div>
-      );
-    },
+    output({ arg, lang = "en" }) { return <Projects  lang={lang}/>},
     description: {
       en: "showcases my functional projects",
       fr: "présente mes projets fonctionnels",
@@ -164,11 +141,10 @@ export const availableCommands = {
     output({ arg, lang = "en" }) {
       return (
         <div className="py-2 text-foreground">
-            <pre style={{fontSize:"clamp(1.5vw, 2.2vw, 1.5rem)"}}>{ascii_gen("contact me" , "Standard")}:</pre>
           <CopyableText link="mailto:walid.oumoulilte@proton.me" text="walid.oumoulilte@proton.me" lang={lang} />
           <CopyableText link="mailto:walid.oumoulilte@gmail.com" text="walid.oumoulilte@gmail.com" lang={lang} />
-          <CopyableText link="https://github.com/walid-hud" text="https://github.com/walid-hud" lang={lang} />
-          <CopyableText link="https://www.linkedin.com/in/walid101" text="https://www.linkedin.com/in/walid101" lang={lang} />
+          <CopyableText link="https://github.com/walid-hud" text="github.com/walid-hud" lang={lang} />
+          <CopyableText link="https://www.linkedin.com/in/walid101" text="linkedin.com/in/walid101" lang={lang} />
         </div>
       );
     },

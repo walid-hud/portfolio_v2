@@ -1,6 +1,7 @@
+import { AiOutlineEnter } from "react-icons/ai";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useState, useRef, useContext } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { MdLanguage } from "react-icons/md";
 import { LanguageContext } from "./LanguageContext";
 
@@ -37,14 +38,26 @@ const Modal = ({ setModalVisible }) => {
       },
     });
   };
-
+  
   const handleConfirm = () => {
     if (lang !== selectedLang) {
       setLang(selectedLang);
     }
     closeModal();
   };
-
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === "Enter") {
+        if (lang !== selectedLang) {
+          setLang(selectedLang);
+        }
+        closeModal();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lang, selectedLang, setLang, closeModal]);
+  
   return (
     showModal && (
       <div className="fixed inset-0 z-10 flex items-center justify-center backdrop-brightness-0 font-sans text-foreground">
@@ -96,7 +109,8 @@ const Modal = ({ setModalVisible }) => {
               onClick={handleConfirm}
               className="bg-background text-foreground px-4 py-2 rounded-md  cursor-pointer hover:opacity-60 transition-all duration-200 ease-in-out outline-1 outline-accent"
             >
-              Confirm
+              Enter
+              <AiOutlineEnter className="inline-block ml-2" />
             </button>
           </div>
         </div>

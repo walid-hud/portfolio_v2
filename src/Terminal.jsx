@@ -39,7 +39,7 @@ const Terminal = () => {
   const handleInputChange = (e) => {
     dispatch({ type: "UPDATE_INPUT", payload: e.target.value });
     let commandMatches = Object.keys(availableCommands).includes(
-      e.target.value.split(" ")[0]
+      e.target.value.split(" ")[0].toLowerCase()
     );
     dispatch({ type: "HIGHLIGHT_COMMAND", payload: commandMatches });
   };
@@ -48,7 +48,7 @@ const Terminal = () => {
       type: "EXECUTE_COMMAND",
       payload: {
         command: inputRef.current.value,
-        commandOutput: findCommand(inputRef.current.value.split(" ")[0]).output(
+        commandOutput: findCommand(inputRef.current.value.split(" ")[0].toLowerCase()).output(
           { arg: inputRef.current.value.split(" ")[1], lang: lang }
         ),
       },
@@ -60,7 +60,7 @@ const Terminal = () => {
       if (entrie[0].includes(inputRef.current.value)) {
         dispatch({ type: "UPDATE_INPUT", payload: entrie[0] });
         let commandMatches = Object.keys(availableCommands).includes(
-          entrie[0].split(" ")[0]
+          entrie[0].split(" ")[0].toLowerCase()
         );
         dispatch({ type: "HIGHLIGHT_COMMAND", payload: commandMatches });
       }
@@ -95,6 +95,7 @@ const Terminal = () => {
   };
   const inputRef = useRef(null);
   useEffect(() => {
+    inputRef.current?.focus();
     window.onkeydown = (e) => {
       if (inputRef.current) {
         inputRef.current.focus();
