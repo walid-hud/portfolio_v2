@@ -1,8 +1,12 @@
-const CommandLabel = ({ command, dir }) => {
+import { useContext } from "react";
+import {LanguageContext} from "./LanguageContext"
+const CommandLabel = ({ command, dir , }) => {
+  const {lang } = useContext(LanguageContext);
   return (
     <>
       <span>
-        guest<span className="text-lime-400">@walid</span>
+        {lang === "fr" ? "visiteur" : "guest"}
+        <span className="text-lime-400">@walid</span>
       </span>
       <span>
         :<span>{dir}</span>

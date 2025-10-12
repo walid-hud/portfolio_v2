@@ -53,7 +53,7 @@ const About = ({ lang = "en" }) => {
         <br />
         <p className="text-chart-2 text-xl">{t.webDeveloperHeader}</p>
 
-        <p>
+        <div>
           {t.webDeveloperText}
           <br />
           {t.webDeveloperTools}
@@ -123,7 +123,7 @@ const About = ({ lang = "en" }) => {
             </li>
           </ul>
           <p>{t.webDeveloperConclusion}</p>
-        </p>
+        </div>
         <br />
         <p className="text-chart-5 text-xl">{t.creativeCoderHeader}</p>
         <p>
@@ -133,7 +133,8 @@ const About = ({ lang = "en" }) => {
           </kbd>{" "}
           {t.conceptsInstruction} <br />
           {t.toolsText}
-          <ul className=" inline px-4 *:inline *:not-first:px-4">
+          <div>
+               <ul className=" inline px-4 *:inline *:not-first:px-4">
             <li>
               <a
                 href="https://gsap.com/"
@@ -153,6 +154,7 @@ const About = ({ lang = "en" }) => {
               </a>
             </li>
           </ul>
+          </div>
         </p>
         <br />
       </div>

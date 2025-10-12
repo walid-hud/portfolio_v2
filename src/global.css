@@ -101,6 +101,9 @@
   --shadow-2xl: var(--shadow-2xl);
 }
 
+body::color-scheme {
+  color-scheme: light;
+}
 body {
   
   text-wrap-style: pretty;
@@ -152,7 +155,7 @@ pre {
 
 
 .title1 {
-  background: radial-gradient(circle, var(--destructive-foreground), var(--chart-4));
+  background: radial-gradient(circle, #eeeeee, var(--chart-4));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -160,7 +163,7 @@ pre {
 }
 
 .title2 {
-  background: radial-gradient(circle, var(--destructive), var(--destructive-foreground));
+  background: radial-gradient(circle, var(--destructive), #eeeeee);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -27,7 +27,8 @@ const Modal = ({ setModalVisible }) => {
 
   // Animate out and close modal
   const closeModal = () => {
-    gsap.to(modalRef.current, {
+   if (modalRef.current) {
+     gsap.to(modalRef.current, {
       scale: 0,
       opacity: 0,
       duration: 0.6,
@@ -37,6 +38,7 @@ const Modal = ({ setModalVisible }) => {
         setModalVisible(false);
       },
     });
+   }
   };
   
   const handleConfirm = () => {

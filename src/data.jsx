@@ -22,6 +22,7 @@ export const availableCommands = {
           concepts: `(showcases some of my creative projects)`,
           projects: `(showcases my functional projects)`,
           links: `(prints my contact info)`,
+          education: "(self explanatory I guess)",
           clear: "(clears the screen | you can also use ctrl + L)",
           help: "(prints this list)",
           whoami: "(display current user)",
@@ -34,6 +35,7 @@ export const availableCommands = {
           concepts: "(présente certains de mes projets créatifs)",
           projects: "(présente mes projets fonctionnels)",
           links: "(affiche mes informations de contact)",
+          education: "(je suppose que c'est explicite)",
           clear: "(efface l'écran | vous pouvez aussi utiliser ctrl + L)",
           help: "(affiche cette liste)",
           whoami: "(affiche l'utilisateur actuel)",
@@ -60,6 +62,8 @@ export const availableCommands = {
         <span>{t.projects}</span>
         <span>links</span>
         <span>{t.links}</span>
+        <span>education</span>
+        <span>{t.education}</span>
         <span>clear</span>
         <span>{t.clear}</span>
         <span>help</span>
@@ -98,7 +102,7 @@ export const availableCommands = {
   },
   whoami: {
     output({ arg, lang = "en" }) {
-      return <p>guest</p>;
+      return <p>{lang === "fr" ? "visiteur" : "guest"}</p>;
     },
     description: {
       en: "display current user",
@@ -128,6 +132,29 @@ export const availableCommands = {
     description: {
       en: "showcases some of my creative projects",
       fr: "présente certains de mes projets créatifs",
+    },
+  },
+  education: {
+    output({ arg, lang = "en" }) {
+      const text = {
+      fr:`
+        Je n'ai pas de diplôme officiel en développement web, et je considère cela comme un avantage. Après avoir examiné de nombreux programmes de cours et discuté avec des étudiants et des diplômés de différents programmes, j'ai remarqué deux problèmes récurrents :
+        <br />- Un champ d'étude trop large : les étudiants sont souvent amenés à étudier plusieurs domaines informatiques à la fois, ce qui ne leur permet d'acquérir qu'une compréhension basique de chacun d'entre eux.
+        <br />- Manque de profondeur : de nombreux programmes traitent tous les langages et frameworks de programmation comme relevant du « développement web », ce qui rend difficile la maîtrise réelle de l'un d'entre eux.
+        <br />Apprendre par moi-même m'a permis de me concentrer profondément sur les domaines les plus importants pour mon travail, tout en restant adaptable et au fait des nouvelles technologies et tendances.`,
+      en:`
+        I don’t have a formal degree in web development, and I see that as an advantage. After reviewing many course outlines and talking to students and graduates from different programs, I noticed two recurring issues:
+        <br />- Too broad of a focus: students are often required to study several IT fields at once, which leaves them with only a basic understanding of each.
+        <br />- Lack of depth — many programs treat all programming languages and frameworks as “web development,” making it difficult to truly master any of them.
+        <br />Learning on my own has allowed me to focus deeply on the areas that matter most to my work, while still staying adaptable and aware of new technologies and trends.`
+}
+      return (
+        <p className="w-full md:w-3/5 lg:w-3/4 " dangerouslySetInnerHTML={{__html:text[lang]}}></p>
+      );
+    },
+    description: {
+      en: "showcases my educational background",
+      fr: "présente mon parcours éducatif",
     },
   },
   projects: {
@@ -172,8 +199,8 @@ export const availableCommands = {
 
       return (
         <div>
-          {fileName.length === 0 && t.noFile}
-          {fileName.length > 0 && !fileToRead && `${t.unknownFile} ${fileName}`}
+          {!arg && t.noFile}
+          {arg && !fileToRead && `${t.unknownFile} ${arg}`}
           {fileToRead && fileToRead.output({ arg, lang })}
         </div>
       );

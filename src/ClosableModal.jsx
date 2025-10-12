@@ -150,10 +150,10 @@ const ClosableModal = ({ videos, isOpen, onClose , lang }) => {
       </div>
       <div>
         {lang === "en" && 
-        <p className="hidden md:flex items-center gap-x-2 *:gap-x-2 *:px-2 fixed z-20 top-0 w-[60vw] justify-center left-1/2 translate-x-[-50%] px-2 py-4  text-foreground/50 *:flex *:last:outline-1 *:last:rounded-sm"> <span><Question/></span>use keyboard <span><Back/><Forward/></span> to navigate or press <span>Esc</span> to close this windows </p>
+        <p className="hidden lg:flex items-center gap-x-2 *:gap-x-2 *:px-2 fixed z-20 top-0 w-[60vw] justify-center left-1/2 translate-x-[-50%] px-2 py-4  text-foreground/50 *:flex *:last:outline-1 *:last:rounded-sm"> <span><Question/></span>use keyboard <span><Back/><Forward/></span> to navigate or press <span>Esc</span> to close this windows </p>
         }
         {lang === "fr" &&
-        <p className="hidden md:flex items-center gap-x-2 *:gap-x-2 *:px-2 fixed z-20 top-0 w-[60vw] justify-center left-1/2 translate-x-[-50%] px-2 py-4  text-foreground/50 *:flex *:last:outline-1 *:last:rounded-sm"> <span><Question/></span>utilisez le clavier <span><Back/><Forward/></span> pour naviguer ou appuyez sur <span>Esc</span> pour fermer cette fenêtre </p>
+        <p className="hidden lg:flex items-center gap-x-2 *:gap-x-2 *:px-2 fixed z-20 top-0 w-[60vw] justify-center left-1/2 translate-x-[-50%] px-2 py-4  text-foreground/50 *:flex *:last:outline-1 *:last:rounded-sm"> <span><Question/></span>utilisez le clavier <span><Back/><Forward/></span> pour naviguer ou appuyez sur <span>Esc</span> pour fermer cette fenêtre </p>
         }
       </div>
     </div>
